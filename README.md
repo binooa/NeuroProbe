@@ -51,6 +51,22 @@ For other Linux distributions, follow the official instructions at:
 
 ---
 
+---
+
+## 📌 Makefile Details
+| Makefile | GEMM Computation | SIMD Optimization |
+|----------|----------------|-------------------|
+| Makefile.withGEMM_withAVX | Enabled | AVX |
+| Makefile.withGEMM_withAVX_SSE4.2 | Enabled | AVX + SSE4.2 |
+| Makefile.withGEMM_withoutSIMD | Enabled | None |
+| Makefile.withGEMM_withSSE4.2 | Enabled | SSE4.2 |
+| Makefile.withoutGEMM_withAVX | Disabled | AVX |
+| Makefile.withoutGEMM_withAVX_SSE4.2 | Disabled | AVX + SSE4.2 |
+| Makefile.withoutGEMM_withoutSIMD | Disabled | None |
+| Makefile.withoutGEMM_withSSE4.2 | Disabled | SSE4.2 |
+
+---
+
 ## ⚡ How to Use the Script
 ### 1️⃣ **Clone the Repository**
 ```sh
