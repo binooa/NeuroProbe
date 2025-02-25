@@ -7,12 +7,28 @@
 
 int main() {
     int inputSize = 2;
-    int numHiddenLayers = 320;
+    int numHiddenLayers = 10;
     int outputSize = 1;
     int numNeuronsperlayer = 1024;
 
-    srand(time(NULL));
-    int* hiddenSizes = (int*)malloc(numHiddenLayers * sizeof(int));
+    // Prompt user for input
+    printf("Enter the number of hidden layers: ");
+    scanf("%d", &numHiddenLayers);
+
+    printf("Enter the number of neurons per hidden layer: ");
+    scanf("%d", &numNeuronsperlayer);
+
+    if (numHiddenLayers <= 0 || numNeuronsperlayer <= 0) {
+        printf("Error: Number of layers and neurons must be greater than zero.\n");
+        return 1;
+    }
+
+    int *hiddenSizes = (int*)malloc(numHiddenLayers * sizeof(int));
+    if (!hiddenSizes) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
     for (int i = 0; i < numHiddenLayers; i++) {
         hiddenSizes[i] = numNeuronsperlayer;
     }
@@ -51,16 +67,7 @@ int main() {
     for (int i = 0; i < numHiddenLayers; i++) {
         printf("[%d] = %d\t", i, hiddenSizes[i]);
     }
-
-    printf("\nInput Neurons: ");
-    for(int i = 0; i < inputSize; i++) {
-        printf("%f\t", input[i]);
-    }
-
-    printf("\nOutput Value: ");    
-    for(int i = 0; i < outputSize; i++) {
-        printf("\nOutput: %f\n", output[i]);
-    }
+    printf("\n");
 
     free(input);
     free(hiddenSizes);
