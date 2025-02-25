@@ -7,7 +7,9 @@ void cblas_gemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA,
                 const double *B, const int ldb, const double beta, double *C,
                 const int ldc) {
     int i, j, l;
+    int istart, iend, jstart, jend, lstart, lend;
     double ctemp;
+
 
     printf("\ngemm call NN:\t");
     printf("Matrix size : C[%dx%d]=A[%dx%d]xB[%dx%d]", M, N, M, K, K, N);    
