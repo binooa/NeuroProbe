@@ -12,23 +12,80 @@ void cblas_gemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA,
     printf("\ngemm call NN:\t");
     printf("Matrix size : C[%dx%d]=A[%dx%d]xB[%dx%d]", M, N, M, K, K, N);    
 
-    if (alpha == 1.0) {
-        for (l = 0; l < K; ++l) {
+    if (M <= 0 || N <= 0 || ((alpha == 0.0 || K == 0) && beta == 1.0))
+        return;
+
+    if (alpha == 0.0) {
+        if (beta == 0.0) {
             for (j = 0; j < N; ++j) {
-                ctemp = B[l + j * ldb];
                 for (i = 0; i < M; ++i) {
+                    C[i + j * ldc] = 0.0;
+                }
+            }
+        } else {
+            for (j = 0; j < N; ++j) {
+                for (i = 0; i < M; ++i) {
+                    C[i + j * ldc] *= beta;
+                }
+            }
+        }
+        return;
+    }
+
+    if (TransA == CblasNoTrans) {
+        istart = 0;
+        iend = M;
+        lstart = 0;
+        lend = K;
+    } else {
+        istart = 0;
+        iend = K;
+        lstart = 0;
+        lend = M;
+    }
+
+    if (TransB == CblasNoTrans) {
+        jstart = 0;
+        jend = N;
+        l = ldb;
+    } else {
+        jstart = 0;
+        jend = K;
+        l = ldc;
+    }
+
+    if (beta == 0.0) {
+        for (j = jstart; j < jend; ++j) {
+            for (i = istart; i < iend; ++i) {
+                C[i + j * ldc] = 0.0;
+            }
+        }
+    } else if (beta != 1.0) {
+        for (j = jstart; j < jend; ++j) {
+            for (i = istart; i < iend; ++i) {
+                C[i + j * ldc] *= beta;
+            }
+        }
+    }
+
+    if (alpha == 1.0) {
+        for (l = lstart; l < lend; ++l) {
+            for (j = jstart; j < jend; ++j) {
+                ctemp = B[l + j * ldb];
+                for (i = istart; i < iend; ++i) {
                     C[i + j * ldc] += A[i + l * lda] * ctemp;
                 }
             }
         }
     } else {
-        for (l = 0; l < K; ++l) {
-            for (j = 0; j < N; ++j) {
+        for (l = lstart; l < lend; ++l) {
+            for (j = jstart; j < jend; ++j) {
                 ctemp = alpha * B[l + j * ldb];
-                for (i = 0; i < M; ++i) {
+                for (i = istart; i < iend; ++i) {
                     C[i + j * ldc] += A[i + l * lda] * ctemp;
                 }
             }
         }
     }
 }
+
