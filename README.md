@@ -21,6 +21,7 @@ This repository contains a **NeuroProbe** for compilation and execution. This re
 └── src/                 # Source code directory
 ```
 
+
 ---
 
 ## 📥 Dependencies
@@ -40,6 +41,16 @@ For other Linux distributions, follow the official instructions at:
 
 ---
 
+## 📌 SIMD Optimization Table
+| Version | SIMD Support |
+|---------|-------------|
+| **WithoutSIMD** | No SIMD optimization |
+| **SSE** | Enabled with SSE4.2 optimizations |
+| **AVX** | Uses AVX instructions for better vectorization |
+| **AVX SSE** | Combines AVX and SSE4.2 for enhanced performance |
+
+---
+
 ## ⚡ How to Use the Script
 ### 1️⃣ **Clone the Repository**
 ```sh
@@ -49,12 +60,12 @@ cd neuroprobe
 
 ### 2️⃣ **Give Execution Permission**
 ```sh
-chmod +x run_neuroprobe.sh
+chmod +x runscript.sh
 ```
 
 ### 3️⃣ **Run the Script**
 ```sh
-./run_neuroprobe.sh
+./runscript.sh
 ```
 
 ---
@@ -81,7 +92,7 @@ When you run the script, you will see:
 8. Makefile.withoutGEMM_withSSE4.2
 0. Exit
 =====================================
-Enter your choice (0-8):
+Enter your choice (0-8): 
 ```
 
 ---
@@ -130,13 +141,3 @@ This ensures that memory is cleaned after execution.
 This project is **open-source** and distributed under the **MIT License**.
 
 ---
-
-## 🤝 Contributing
-Feel free to fork this repository and submit **pull requests**! 🚀
-
----
-
-## 📧 Contact
-For questions, reach out via [GitHub Issues](https://github.com/yourusername/neuroprobe/issues).
-```
-
