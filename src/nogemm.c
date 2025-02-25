@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-
 void cblas_gemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
                 CBLAS_TRANSPOSE TransB, int M, int N,
                 int K, double alpha, const double *A, int lda,
@@ -17,13 +16,14 @@ void cblas_gemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
     (void) TransA;
     (void) TransB;
     gemm_call++;
-    printf("\ngemm call : %d\t",gemm_call);
-    printf("Matrix size : C[%dx%d]=A[%dx%d]xB[%dx%d]", M, N, M, K, K, N);
+    printf("\ngemm call without computation block : %d\t",gemm_call);
 
     struct timeval start, end;
     double elapsedTime;
     gettimeofday(&start, NULL);  // Start time
-
+    
+    /*
+    printf("Matrix size : C[%dx%d]=A[%dx%d]xB[%dx%d]", M, N, M, K, K, N);
 
     if (TransA == CblasNoTrans) {
         istart = 0;
@@ -48,7 +48,6 @@ void cblas_gemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
     if (beta == 0.0) {
         for (j = jstart; j < jend; ++j) {
             for (i = istart; i < iend; ++i) {
-
                 C[i + j * ldc] = 0.0;
             }
         }
@@ -64,7 +63,7 @@ void cblas_gemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
         for (l = lstart; l < lend; ++l) {
             for (j = jstart; j < jend; ++j) {
                 ctemp = B[l + j * ldb];
-                for (i = istart; i < iend; ++i) {     
+                for (i = istart; i < iend; ++i) {
                     C[i + j * ldc] += A[i + l * lda] * ctemp;
                 }
             }
@@ -78,7 +77,7 @@ void cblas_gemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
                 }
             }
         }
-    }
+    }*/
     gettimeofday(&end, NULL);  // End time
     // Compute time difference in seconds
     elapsedTime = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1e6;

@@ -8,14 +8,15 @@ void initializeWeights(double *weights, int rows, int cols) {
     srand((unsigned) time(NULL) * getpid());
     double scale = XAVIER_SCALE / (sqrt(rows) + sqrt(cols));    
     for (int i = 0; i < rows * cols; i++) {
-        weights[i] = 1.0;
+        weights[i] = scale;
     }
 }
 
 void initializeHiddenNeurons(double *hneuron, int size) {
     srand((unsigned) time(NULL) * getpid());
+    double scale = 2.0 / (sqrt(size));   
     for (int i = 0; i < size; i++) {
-        hneuron[i] = 1.0;
+        hneuron[i] = scale;
     }
 }
 

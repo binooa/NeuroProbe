@@ -3,10 +3,24 @@
 
 #define XAVIER_SCALE 1.0
 
-typedef enum { CblasRowMajor, CblasColMajor } CBLAS_ORDER;
-typedef enum { CblasNoTrans, CblasTrans, CblasConjTrans } CBLAS_TRANSPOSE;
+// Define enums outside function declarations
+typedef enum {
+    CblasRowMajor,
+    CblasColMajor
+} CBLAS_ORDER;
 
-void cblas_gemm(CBLAS_ORDER, CBLAS_TRANSPOSE, CBLAS_TRANSPOSE, int, int, int, double, const double*, int, const double*, int, double, double*, int);
+typedef enum {
+    CblasNoTrans,
+    CblasTrans,
+    CblasConjTrans
+} CBLAS_TRANSPOSE;
+
+// Declare function prototypes
+void cblas_gemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
+                CBLAS_TRANSPOSE TransB, int M, int N, int K,
+                double alpha, const double *A, int lda,
+                const double *B, int ldb, double beta, double *C, int ldc);
+
 void initializeWeights(double*, int, int);
 void initializeHiddenNeurons(double*, int);
 void initializeBias(double*, int);
