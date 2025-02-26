@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Core(TM) i3-6100U CPU @ 2.30GHz
+CPU type:	Intel Skylake processor
+CPU clock:	2.30 GHz
+--------------------------------------------------------------------------------
++------------------------------------------+---------+-----------+
+|                   Event                  | Counter |   Core 0  |
++------------------------------------------+---------+-----------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 274894129 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 252014115 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 309238656 |
+|              PWR_PKG_ENERGY              |   PWR0  |    1.0187 |
+|              PWR_DRAM_ENERGY             |   PWR3  |    0.4855 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |         0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |  18880568 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |      2560 |
+|                DRAM_READS                | MBOX0C1 |  11819940 |
+|                DRAM_WRITES               | MBOX0C2 |   1542285 |
++------------------------------------------+---------+-----------+
+
++-----------------------------------+-----------+
+|               Metric              |   Core 0  |
++-----------------------------------+-----------+
+|        Runtime (RDTSC) [s]        |    0.1963 |
+|        Runtime unhalted [s]       |    0.1094 |
+|            Clock [MHz]            | 1877.5832 |
+|                CPI                |    0.9168 |
+|             Energy [J]            |    1.0187 |
+|             Power [W]             |    5.1887 |
+|          Energy DRAM [J]          |    0.4855 |
+|           Power DRAM [W]          |    2.4729 |
+|            DP [MFLOP/s]           |   96.2153 |
+|          AVX DP [MFLOP/s]         |    0.0522 |
+|          Packed [MUOPS/s]         |    0.0130 |
+|          Scalar [MUOPS/s]         |   96.1632 |
+|  Memory load bandwidth [MBytes/s] | 3852.9116 |
+|  Memory load data volume [GBytes] |    0.7565 |
+| Memory evict bandwidth [MBytes/s] |  502.7342 |
+| Memory evict data volume [GBytes] |    0.0987 |
+|    Memory bandwidth [MBytes/s]    | 4355.6457 |
+|    Memory data volume [GBytes]    |    0.8552 |
+|       Operational intensity       |    0.0221 |
++-----------------------------------+-----------+
